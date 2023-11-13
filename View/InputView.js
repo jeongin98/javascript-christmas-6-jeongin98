@@ -20,10 +20,18 @@ const InputView = {
   },
 
   async readOrder() {
-    const order = await Console.readLineAsync(INPUT_MESSAGE.readOrder);
-    // 유효성
-    // 재검사
-    return order;
+    const isValidOrder = false;
+    let userOrder;
+    while (!isValidOrder) {
+      try {
+        const userOrderInput = await Console.readLineAsync(INPUT_MESSAGE.readOrder);
+        // orderInfo = Validation.checkOrder(userOrderInput);
+        isValidOrder = true;
+      } catch (error) {
+        Console.print(error.message);
+      }
+    }
+    // return orderInfo;
   },
 };
 
