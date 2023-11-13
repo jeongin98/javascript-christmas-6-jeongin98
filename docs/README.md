@@ -82,7 +82,7 @@
 
 > 이벤트를 진행하는 컨트롤러로 Model(EventService)과 View(View)로 명령을 전달하는 클래스
 
-- [ ] 멤버 필드
+- [x] 멤버 필드
   - eventService
   - view
 - [ ] 사용자 입력 받아 이벤트 실행
@@ -108,3 +108,15 @@
 > Validation과 관련된 테스트 진행
 
 - [x] 주문 정보를 정제한 뒤 반환하는 함수 테스트
+
+### App
+
+> Controller 인스턴스 생성 및 실행
+
+- [x] 멤버 필드
+  - controller
+- [x] 컨트롤러 실행
+
+### index
+
+> App 실행
