@@ -1,3 +1,5 @@
+import { Console } from '@woowacourse/mission-utils';
+
 class ChristmasPromotionController {
   #eventService;
 
@@ -8,5 +10,10 @@ class ChristmasPromotionController {
     this.#view = View;
   }
 
-  start() {}
+  async start() {
+    const dateNumber = await this.#view.readDate();
+    const refinedOrderList = await this.#view.readOrder();
+  }
 }
+
+export default ChristmasPromotionController;

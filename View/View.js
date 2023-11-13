@@ -1,3 +1,5 @@
+import { Console } from '@woowacourse/mission-utils';
+
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
 
@@ -7,17 +9,19 @@ class View {
   #outputView;
 
   constructor() {
-    this.#inputView = new InputView();
-    this.#outputView = new OutputView();
+    this.#inputView = InputView;
+    this.#outputView = OutputView;
   }
 
-  readDate() {
-    const dateNumber = this.#inputView.readDate();
+  async readDate() {
+    const dateNumber = await this.#inputView.readDate();
     return dateNumber;
   }
 
-  readOrder() {
-    const refinedOrderList = this.#inputView.readOrder();
+  async readOrder() {
+    const refinedOrderList = await this.#inputView.readOrder();
     return refinedOrderList;
   }
 }
+
+export default View;

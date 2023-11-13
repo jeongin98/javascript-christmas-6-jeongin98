@@ -4,7 +4,7 @@ import Validation from '../utils/validation.js';
 
 const InputView = {
   async readDate() {
-    const isValidDate = false;
+    let isValidDate = false;
     let userDateNumber;
     while (!isValidDate) {
       try {
@@ -20,8 +20,8 @@ const InputView = {
   },
 
   async readOrder() {
-    const isValidOrder = false;
-    let userOrder;
+    let isValidOrder = false;
+    let refinedOrderList;
     while (!isValidOrder) {
       try {
         const userOrderInput = await Console.readLineAsync(INPUT_MESSAGE.readOrder);
