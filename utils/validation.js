@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from './messages.js';
-// import Menu from '../Domain/menu.js'
+import Menu from '../Domain/menu.js';
 
 const Validation = {
   checkDate(userDateNumber) {
@@ -12,17 +12,37 @@ const Validation = {
     }
   },
 
-  // 주문 정보를 정제한 뒤 반환하는 함수 이용
-  changeIntoOrderInfo(userOrderString){
-    // Menu 이용해서 데이터 정제
-  }
+  // 동작되는 것 확인 후 함수 분리
+  changeIntoOrderInfo(userOrderString) {
+    const orderArray = userOrderString.split(',');
+    const orderList = [];
 
-  checkOrder(userOrderString){
+    orderArray.forEach((orderItem) => {
+      const [menuNameOrder, orderQuantityOrder] = orderItem.trim().split('-');
+
+      let categoryFound = '';
+      for (const [key, value] of Object.entries(Menu)) {
+        if (value.hasOwnProperty(menuNameOrder)) {
+          categoryFound = key;
+          break;
+        }
+      }
+      // 분기점
+      if (categoryFound) {
+        orderList.push({
+          category: categoryFound,
+          menuName: menuNameOrder,
+          orderQuantity: parseInt(orderQuantityOrder, 10) || 0,
+        });
+      }
+    });
+    return orderList;
+  },
+
+  checkOrder(userOrderString) {
     const orderInfo = this.changeIntoOrderInfo(userOrderString);
     return orderInfo;
-  }
-
-
+  },
 };
 
 export default Validation;
