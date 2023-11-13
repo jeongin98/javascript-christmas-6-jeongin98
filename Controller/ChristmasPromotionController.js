@@ -3,9 +3,9 @@ class ChristmasPromotionController {
 
   #view;
 
-  constructor() {
-    this.#eventService;
-    this.#view;
+  constructor({ EventService, View }) {
+    this.#eventService = EventService;
+    this.#view = View;
   }
 
   start() {}

@@ -54,7 +54,7 @@
 
 > InputView, OutputView 객체를 매니징하는 클래스
 
-- [ ] 멤버 필드
+- [x] 멤버 필드
   - inputView
   - outputView
 - [ ] 날짜 입력받은 후 반환(InputView)
