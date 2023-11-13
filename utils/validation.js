@@ -12,22 +12,20 @@ const Validation = {
     }
   },
 
-  // 동작되는 것 확인 후 함수 분리
+  findCategory(menuNameOrder) {
+    for (const [key, value] of Object.entries(Menu)) {
+      if (value.hasOwnProperty(menuNameOrder)) {
+        return key;
+      }
+    }
+  },
+
   changeIntoOrderInfo(userOrderString) {
     const orderArray = userOrderString.split(',');
     const orderList = [];
-
     orderArray.forEach((orderItem) => {
       const [menuNameOrder, orderQuantityOrder] = orderItem.trim().split('-');
-
-      let categoryFound = '';
-      for (const [key, value] of Object.entries(Menu)) {
-        if (value.hasOwnProperty(menuNameOrder)) {
-          categoryFound = key;
-          break;
-        }
-      }
-      // 분기점
+      const categoryFound = this.findCategory(menuNameOrder);
       if (categoryFound) {
         orderList.push({
           category: categoryFound,
