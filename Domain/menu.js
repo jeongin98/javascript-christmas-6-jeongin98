@@ -22,7 +22,6 @@ const Drinks = {
   샴페인: { price: 25000 },
 };
 
-// 각 카테고리를 묶은 전체 메뉴 객체
 const Menu = {
   Appetizers,
   Mains,

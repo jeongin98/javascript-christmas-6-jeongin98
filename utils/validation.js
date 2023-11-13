@@ -22,24 +22,24 @@ const Validation = {
 
   changeIntoOrderInfo(userOrderString) {
     const orderArray = userOrderString.split(',');
-    const orderList = [];
+    const refinedOrderList = [];
     orderArray.forEach((orderItem) => {
       const [menuNameOrder, orderQuantityOrder] = orderItem.trim().split('-');
       const categoryFound = this.findCategory(menuNameOrder);
       if (categoryFound) {
-        orderList.push({
+        refinedOrderList.push({
           category: categoryFound,
           menuName: menuNameOrder,
           orderQuantity: parseInt(orderQuantityOrder, 10) || 0,
         });
       }
     });
-    return orderList;
+    return refinedOrderList;
   },
 
   checkOrder(userOrderString) {
-    const orderInfo = this.changeIntoOrderInfo(userOrderString);
-    return orderInfo;
+    const refinedOrderList = this.changeIntoOrderInfo(userOrderString);
+    return refinedOrderList;
   },
 };
 

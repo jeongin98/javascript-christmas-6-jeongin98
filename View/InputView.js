@@ -25,13 +25,13 @@ const InputView = {
     while (!isValidOrder) {
       try {
         const userOrderInput = await Console.readLineAsync(INPUT_MESSAGE.readOrder);
-        // orderInfo = Validation.checkOrder(userOrderInput);
+        refinedOrderList = Validation.checkOrder(userOrderInput);
         isValidOrder = true;
       } catch (error) {
         Console.print(error.message);
       }
     }
-    // return orderInfo;
+    return refinedOrderList;
   },
 };
 
