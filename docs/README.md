@@ -57,8 +57,8 @@
 - [x] 멤버 필드
   - inputView
   - outputView
-- [ ] 날짜 입력받은 후 반환(InputView)
-- [ ] 주문 정보 입력받은 후 반환(InputView)
+- [x] 날짜 입력받은 후 반환(InputView)
+- [x] 주문 정보 입력받은 후 반환(InputView)
 - [ ] 이벤트 결과 출력(OutputView)
 
 ### InputView

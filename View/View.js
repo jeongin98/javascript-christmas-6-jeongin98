@@ -15,4 +15,9 @@ class View {
     const dateNumber = this.#inputView.readDate();
     return dateNumber;
   }
+
+  readOrder() {
+    const refinedOrderList = this.#inputView.readOrder();
+    return refinedOrderList;
+  }
 }
