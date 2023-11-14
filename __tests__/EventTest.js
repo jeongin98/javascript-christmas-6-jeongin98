@@ -101,4 +101,23 @@ describe('Event 테스트', () => {
     // then
     expect(isMinused).toEqual(true);
   });
+  test('평일 할인 함수가 작동하는지 확인한다', async () => {
+    // given
+    const date = 6;
+    const orderList = [
+      { category: 'Mains', menuName: '티본스테이크', orderQuantity: 1 },
+      { category: 'Mains', menuName: '바비큐립', orderQuantity: 1 },
+      { category: 'Dessert', menuName: '초코케이크', orderQuantity: 2 },
+      { category: 'Beverage', menuName: '제로콜라', orderQuantity: 1 },
+    ];
+    const event = new Event(date, orderList);
+
+    // when
+    event.weekdaysDiscount();
+    const discountCost = event.getEventResult().discounts.weekdays;
+    const result = 2 * -2023;
+
+    // then
+    expect(discountCost).toStrictEqual(result);
+  });
 });
