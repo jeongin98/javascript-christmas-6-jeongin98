@@ -141,4 +141,24 @@ describe('Event 클래스 함수 테스트', () => {
     // then
     expect(discountCost).toStrictEqual(result);
   });
+
+  test('크리스마스', async () => {
+    // given
+    const date = 25;
+    const orderList = [
+      { category: 'Main', menuName: '티본스테이크', orderQuantity: 1 },
+      { category: 'Main', menuName: '바비큐립', orderQuantity: 1 },
+      { category: 'Dessert', menuName: '초코케이크', orderQuantity: 2 },
+      { category: 'Beverage', menuName: '제로콜라', orderQuantity: 1 },
+    ];
+    const event = new Event(date, orderList);
+
+    // when
+    event.christmasDiscount();
+    const discountCost = event.getEventResult().discounts.christmas;
+    const result = -(1000 + (date - 1) * 100);
+
+    // then
+    expect(discountCost).toStrictEqual(result);
+  });
 });
