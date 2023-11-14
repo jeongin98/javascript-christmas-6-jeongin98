@@ -28,7 +28,7 @@ class Event {
     // 할인
     isDiscountable ? this.startDiscount() : this.notDiscount();
     // 이벤트
-    // this.startEvent();
+    this.startFreeGiftEvent();
 
     return this.#eventResult;
   }
@@ -126,6 +126,12 @@ class Event {
     const totalDiscount = Object.values(discounts).reduce((total, discount) => total + discount, 0);
     this.#eventResult.totalDiscount = totalDiscount;
     if (this.#eventResult.freeGift) this.#eventResult.totalDiscount -= 25000;
+  }
+
+  startFreeGiftEvent() {
+    if (this.#eventResult.originalTotalCost >= 120000) {
+      this.#eventResult.freeGift = true;
+    }
   }
 
   getEventResult() {
