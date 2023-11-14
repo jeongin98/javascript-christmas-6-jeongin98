@@ -54,6 +54,7 @@ class Event {
     // 평일 할인
     // 주말 할인
     // 특별 할인
+    this.specialDiscount();
   }
 
   // 할인 미진행 함수
@@ -78,6 +79,12 @@ class Event {
       const menuPrice = Menu[category][menuName].price;
       this.#eventResult.originalTotalCost += menuPrice * orderQuantity;
     });
+  }
+
+  specialDiscount() {
+    if (this.date % 7 === 3 || this.date === 25) {
+      this.#eventResult.discounts.special += -1000;
+    }
   }
 
   getEventResult() {
