@@ -52,7 +52,7 @@ class Event {
     this.setOriginalTotalCost();
     // 크리스마스 디데이 할인
     this.weekdaysDiscount();
-    // 주말 할인
+    this.weekendsDiscount();
     this.specialDiscount();
   }
 
@@ -97,6 +97,20 @@ class Event {
     const remainder = this.#date % 7;
     if ((remainder === 0 || remainder === 3 || remainder === 4 || remainder === 5 || remainder === 6) && this.#date !== 25) {
       this.#eventResult.discounts.weekdays += dessertItemCount * -2023;
+    }
+  }
+
+  weekendsDiscount() {
+    let mainItemCount = 0;
+    this.#orderList.forEach((order) => {
+      if (order.category === 'Mains') {
+        mainItemCount += order.orderQuantity;
+      }
+    });
+
+    const remainder = this.#date % 7;
+    if (remainder === 1 || remainder === 2) {
+      this.#eventResult.discounts.weekends += mainItemCount * -2023;
     }
   }
 
