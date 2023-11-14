@@ -15,7 +15,8 @@ class ChristmasPromotionController {
     const dateNumber = await this.#view.readDate();
     const refinedOrderList = await this.#view.readOrder();
     this.#eventService = new EventService(dateNumber, refinedOrderList);
-    this.#eventService.start();
+    const eventResult = this.#eventService.start();
+    this.#view.printResult(eventResult);
   }
 }
 

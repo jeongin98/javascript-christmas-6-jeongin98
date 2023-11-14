@@ -22,7 +22,7 @@
 
 - [x] 멤버 필드
   - event
-- [ ] Event 클래스를 이용해 이벤트를 실행한 뒤, 이벤트 결과를 반환
+- [x] Event 클래스를 이용해 이벤트를 실행한 뒤, 이벤트 결과를 반환
 
 ### Event
 
@@ -66,7 +66,7 @@
   - outputView
 - [x] 날짜 입력받은 후 반환(InputView)
 - [x] 주문 정보 입력받은 후 반환(InputView)
-- [ ] 이벤트 결과 출력(OutputView)
+- [x] 이벤트 결과 출력(OutputView)
 
 ### InputView
 
@@ -81,7 +81,7 @@
 
 > 출력을 담당하는 객체
 
-- [ ] 이벤트 결과 출력
+- [x] 이벤트 결과 출력
 
 # Controller
 
