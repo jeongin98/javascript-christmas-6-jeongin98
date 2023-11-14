@@ -56,7 +56,6 @@ class Event {
     this.specialDiscount();
   }
 
-  // 할인 미진행 함수
   notDiscount() {
     this.setMenuInOrderList();
     this.setOriginalTotalCost();
@@ -103,7 +102,7 @@ class Event {
   weekendsDiscount() {
     let mainItemCount = 0;
     this.#orderList.forEach((order) => {
-      if (order.category === 'Mains') {
+      if (order.category === 'Main') {
         mainItemCount += order.orderQuantity;
       }
     });
