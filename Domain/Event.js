@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Menu from './menu.js';
+import CONSTANTS from '../utils/constants.js';
 
 class Event {
   #date;
@@ -18,16 +19,15 @@ class Event {
       discounts: { christmas: 0, weekdays: 0, weekends: 0, special: 0, gift: 0 },
       totalDiscount: 0,
       costAfterDiscount: 0,
-      eventBadge: null,
+      eventBadge: '',
     };
   }
 
   startDiscountAndEvent() {
-    // 할인 여부
     const isDiscountable = this.isDiscountOrder();
-    // 할인
+
     isDiscountable ? this.startDiscount() : this.notDiscount();
-    // 이벤트
+
     this.freeGiftEvent();
     this.badgeEvent();
 
@@ -42,7 +42,7 @@ class Event {
     }, 0);
 
     let isDiscountable = false;
-    if (totalOrderCost >= 10000) {
+    if (totalOrderCost >= CONSTANTS.thresholdDiscountCost) {
       isDiscountable = true;
     }
     return isDiscountable;
@@ -66,7 +66,7 @@ class Event {
     this.#eventResult.discounts = null;
     this.#eventResult.totalDiscount = 0;
     this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost;
-    this.#eventResult.eventBadge = null;
+    this.#eventResult.eventBadge = '없음';
   }
 
   setMenuInOrderList() {
@@ -104,7 +104,7 @@ class Event {
 
     const remainder = this.#date % 7;
     if ((remainder === 0 || remainder === 3 || remainder === 4 || remainder === 5 || remainder === 6) && this.#date !== 25) {
-      this.#eventResult.discounts.weekdays += dessertItemCount * -2023;
+      this.#eventResult.discounts.weekdays += dessertItemCount * -CONSTANTS.year;
     }
   }
 
@@ -118,19 +118,19 @@ class Event {
 
     const remainder = this.#date % 7;
     if (remainder === 1 || remainder === 2) {
-      this.#eventResult.discounts.weekends += mainItemCount * -2023;
+      this.#eventResult.discounts.weekends += mainItemCount * -CONSTANTS.year;
     }
   }
 
   freeGiftEvent() {
-    if (this.#eventResult.originalTotalCost >= 120000) {
+    if (this.#eventResult.originalTotalCost >= CONSTANTS.thresholdFreeGiftCost) {
       this.#eventResult.freeGift = true;
     }
   }
 
   freeGiftDiscount() {
-    if (this.#eventResult.originalTotalCost > 120000 || this.#eventResult.freeGift === true) {
-      this.#eventResult.discounts.gift -= 25000;
+    if (this.#eventResult.originalTotalCost > CONSTANTS.thresholdFreeGiftCost || this.#eventResult.freeGift === true) {
+      this.#eventResult.discounts.gift -= CONSTANTS.freeGiftCost;
     }
   }
 

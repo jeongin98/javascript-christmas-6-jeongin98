@@ -73,7 +73,7 @@ describe('Event 클래스 함수 테스트', () => {
       discounts: null,
       totalDiscount: 0,
       costAfterDiscount: 8500,
-      eventBadge: null,
+      eventBadge: '없음',
     };
 
     // when
