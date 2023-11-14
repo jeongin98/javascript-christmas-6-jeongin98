@@ -16,4 +16,23 @@ describe('Event 테스트', () => {
     // then
     expect(result).toStrictEqual(false);
   });
+
+  test('결과로 넣을 주문 내역을 설정한다', async () => {
+    // given
+    const date = 3;
+    const orderList = [
+      { category: 'Appetizers', menuName: '타파스', orderQuantity: 1 },
+      { category: 'Drinks', menuName: '제로콜라', orderQuantity: 1 },
+    ];
+
+    const event = new Event(date, orderList);
+    const result = { 타파스: 1, 제로콜라: 1 };
+    const eventResultOrderList = event.getEventResult().orderList;
+
+    // when
+    event.setMenuInOrderList();
+
+    // then
+    expect(eventResultOrderList).toStrictEqual(result);
+  });
 });

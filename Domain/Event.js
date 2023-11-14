@@ -56,6 +56,7 @@ class Event {
     // 특별 할인
   }
 
+  // 할인 미진행 함수
   notDiscount() {
     this.setMenuInOrderList();
     this.setOriginalTotalCost();
@@ -67,11 +68,8 @@ class Event {
   }
 
   setMenuInOrderList() {
-    this.#orderList.forEach(({ menuName, orderQuantity }, index) => {
-      if (index > 0) {
-        this.#eventResult.orderList += ', ';
-      }
-      this.#eventResult.orderList += `${menuName} ${orderQuantity}개`;
+    this.#orderList.forEach(({ menuName, orderQuantity }) => {
+      this.#eventResult.orderList[menuName] = orderQuantity;
     });
   }
 
@@ -81,6 +79,10 @@ class Event {
       this.#eventResult.originalTotalCost += menuPrice * orderQuantity;
       this.#eventResult.orderList[menuName] = orderQuantity;
     });
+  }
+
+  getEventResult() {
+    return this.#eventResult;
   }
 }
 
