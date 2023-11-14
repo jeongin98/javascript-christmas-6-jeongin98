@@ -121,31 +121,37 @@ class Event {
     }
   }
 
+  freeGiftDiscount() {
+    if (this.#eventResult.originalTotalCost > 120000 || this.#eventResult.freeGift === true) {
+      this.#eventResult.discounts.gift -= 25000;
+    }
+  }
+
   setTotalDiscountCost() {
     const { discounts } = this.#eventResult;
     const totalDiscount = Object.values(discounts).reduce((total, discount) => total + discount, 0);
     this.#eventResult.totalDiscount = totalDiscount;
-    if (this.#eventResult.freeGift) this.#eventResult.totalDiscount -= 25000;
-  }
-
-  freeGiftEvent() {
-    if (this.#eventResult.originalTotalCost >= 120000) {
-      this.#eventResult.freeGift = true;
-    }
   }
 
   badgeEvent() {
-    // 이벤트 배지가 부여되지 않는 경우, "없음"으로 보여 주세요.
+    const { totalDiscount } = this.#eventResult;
+    if (-totalDiscount >= 20000) {
+      this.#eventResult.eventBadge = '산타';
+      return;
+    }
+    if (-totalDiscount >= 10000) {
+      this.#eventResult.eventBadge = '트리';
+      return;
+    }
+    if (-totalDiscount >= 5000) {
+      this.#eventResult.eventBadge = '별';
+      return;
+    }
+    this.#eventResult.eventBadge = '없음';
   }
 
   getEventResult() {
-    const { totalDiscount } = this.#eventResult;
-
-    if (totalDiscount >= 20000) this.#eventResult.eventBadge = '산타';
-    if (totalDiscount >= 10000) this.#eventResult.eventBadge = '트리';
-    if (totalDiscount >= 5000) this.#eventResult.eventBadge = '별';
-
-    this.#eventResult.eventBadge = '없음';
+    return this.#eventResult;
   }
 }
 
