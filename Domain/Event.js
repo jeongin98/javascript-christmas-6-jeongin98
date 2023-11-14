@@ -47,24 +47,38 @@ class Event {
     return isDiscountable;
   }
 
+  // 주문 내역 설정, 총주문 금액 계산 함수 분리
   startDiscount() {
     // 주문 내역 설정
-    this.#orderList.forEach(({ menuName, orderQuantity }) => {
-      this.#eventResult.orderList[menuName] = orderQuantity;
-    });
+    this.setMenuInOrderList();
     // 총주문 금액 계산
-    this.#orderList.forEach(({ category, menuName, orderQuantity }) => {
-      const menuPrice = Menu[category][menuName].price;
-      this.#eventResult.originalTotalCost += menuPrice * orderQuantity;
-      this.#eventResult.orderList[menuName] = orderQuantity;
-    });
+    this.setOriginalTotalCost();
+
     // 크리스마스 디데이 할인
     // 평일 할인
     // 주말 할인
     // 특별 할인
   }
 
+  // 할인 미진행 함수
   notDiscount() {}
+
+  setMenuInOrderList() {
+    this.#orderList.forEach(({ menuName, orderQuantity }, index) => {
+      if (index > 0) {
+        this.#eventResult.orderList += ', ';
+      }
+      this.#eventResult.orderList += `${menuName} ${orderQuantity}개`;
+    });
+  }
+
+  setOriginalTotalCost() {
+    this.#orderList.forEach(({ category, menuName, orderQuantity }) => {
+      const menuPrice = Menu[category][menuName].price;
+      this.#eventResult.originalTotalCost += menuPrice * orderQuantity;
+      this.#eventResult.orderList[menuName] = orderQuantity;
+    });
+  }
 }
 
 export default Event;
