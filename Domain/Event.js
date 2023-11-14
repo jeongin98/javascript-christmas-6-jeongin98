@@ -55,6 +55,7 @@ class Event {
     this.weekdaysDiscount();
     this.weekendsDiscount();
     this.specialDiscount();
+    this.freeGiftDiscount();
     this.setTotalDiscountCost();
   }
 
@@ -118,6 +119,12 @@ class Event {
     const remainder = this.#date % 7;
     if (remainder === 1 || remainder === 2) {
       this.#eventResult.discounts.weekends += mainItemCount * -2023;
+    }
+  }
+
+  freeGiftEvent() {
+    if (this.#eventResult.originalTotalCost >= 120000) {
+      this.#eventResult.freeGift = true;
     }
   }
 
