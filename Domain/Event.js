@@ -47,21 +47,24 @@ class Event {
     return isDiscountable;
   }
 
-  // 주문 내역 설정, 총주문 금액 계산 함수 분리
   startDiscount() {
-    // 주문 내역 설정
     this.setMenuInOrderList();
-    // 총주문 금액 계산
     this.setOriginalTotalCost();
-
-    // 크리스마스 디데이 할인
+    // 크리스마스 디데이 할인(리턴 형식)
     // 평일 할인
     // 주말 할인
     // 특별 할인
   }
 
-  // 할인 미진행 함수
-  notDiscount() {}
+  notDiscount() {
+    this.setMenuInOrderList();
+    this.setOriginalTotalCost();
+    this.#eventResult.freeGift = false;
+    this.#eventResult.discounts = null;
+    this.#eventResult.totalDiscount = 0;
+    this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost;
+    this.#eventResult.orderList = null;
+  }
 
   setMenuInOrderList() {
     this.#orderList.forEach(({ menuName, orderQuantity }, index) => {
