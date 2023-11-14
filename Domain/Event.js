@@ -1,3 +1,6 @@
+import { Console } from '@woowacourse/mission-utils';
+import Menu from './menu.js';
+
 class Event {
   #date;
 
@@ -13,11 +16,26 @@ class Event {
 
   startDiscountAndEvent() {
     // 할인 여부
-    isDiscountOrder();
+    const isDiscountable = this.isDiscountOrder();
     // 할인
-    startDiscount();
+    // startDiscount();
     // 이벤트
-    startEvent();
+    // startEvent();
+
+    return this.#eventResult;
+  }
+
+  isDiscountOrder() {
+    const totalOrderCost = this.#orderList.reduce((total, order) => {
+      const { category, menuName, orderQuantity } = order;
+      const menuPrice = Menu[category][menuName].price;
+      return total + menuPrice * orderQuantity;
+    }, 0);
+
+    if (totalOrderCost >= 10000) {
+      const isDiscountable = true;
+    }
+    return isDiscountable;
   }
 }
 
