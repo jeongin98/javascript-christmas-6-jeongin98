@@ -125,6 +125,7 @@ class Event {
     const { discounts } = this.#eventResult;
     const totalDiscount = Object.values(discounts).reduce((total, discount) => total + discount, 0);
     this.#eventResult.totalDiscount = totalDiscount;
+    if (this.#eventResult.freeGift) this.#eventResult.totalDiscount -= 25000;
   }
 
   getEventResult() {

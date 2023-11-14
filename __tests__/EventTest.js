@@ -90,7 +90,7 @@ describe('Event 클래스 함수 테스트', () => {
       { category: 'Main', menuName: '티본스테이크', orderQuantity: 1 },
       { category: 'Main', menuName: '바비큐립', orderQuantity: 1 },
       { category: 'Dessert', menuName: '초코케이크', orderQuantity: 2 },
-      { category: 'Beverage', menuName: '제로콜라', orderQuantity: 1 },
+      { category: 'Drink', menuName: '제로콜라', orderQuantity: 1 },
     ];
     const event = new Event(date, orderList);
 
@@ -109,7 +109,7 @@ describe('Event 클래스 함수 테스트', () => {
       { category: 'Main', menuName: '티본스테이크', orderQuantity: 1 },
       { category: 'Main', menuName: '바비큐립', orderQuantity: 1 },
       { category: 'Dessert', menuName: '초코케이크', orderQuantity: 2 },
-      { category: 'Beverage', menuName: '제로콜라', orderQuantity: 1 },
+      { category: 'Drink', menuName: '제로콜라', orderQuantity: 1 },
     ];
     const event = new Event(date, orderList);
 
@@ -129,7 +129,7 @@ describe('Event 클래스 함수 테스트', () => {
       { category: 'Main', menuName: '티본스테이크', orderQuantity: 1 },
       { category: 'Main', menuName: '바비큐립', orderQuantity: 1 },
       { category: 'Dessert', menuName: '초코케이크', orderQuantity: 2 },
-      { category: 'Beverage', menuName: '제로콜라', orderQuantity: 1 },
+      { category: 'Drink', menuName: '제로콜라', orderQuantity: 1 },
     ];
     const event = new Event(date, orderList);
 
@@ -149,7 +149,7 @@ describe('Event 클래스 함수 테스트', () => {
       { category: 'Main', menuName: '티본스테이크', orderQuantity: 1 },
       { category: 'Main', menuName: '바비큐립', orderQuantity: 1 },
       { category: 'Dessert', menuName: '초코케이크', orderQuantity: 2 },
-      { category: 'Beverage', menuName: '제로콜라', orderQuantity: 1 },
+      { category: 'Drink', menuName: '제로콜라', orderQuantity: 1 },
     ];
     const event = new Event(date, orderList);
 
