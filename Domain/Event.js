@@ -54,6 +54,7 @@ class Event {
     this.weekdaysDiscount();
     this.weekendsDiscount();
     this.specialDiscount();
+    this.setTotalDiscountCost();
   }
 
   notDiscount() {
@@ -64,6 +65,7 @@ class Event {
     this.#eventResult.totalDiscount = 0;
     this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost;
     this.#eventResult.eventBadge = null;
+    this.setTotalDiscountCost();
   }
 
   setMenuInOrderList() {
@@ -117,6 +119,12 @@ class Event {
     if (remainder === 1 || remainder === 2) {
       this.#eventResult.discounts.weekends += mainItemCount * -2023;
     }
+  }
+
+  setTotalDiscountCost() {
+    const { discounts } = this.#eventResult;
+    const totalDiscount = Object.values(discounts).reduce((total, discount) => total + discount, 0);
+    this.#eventResult.totalDiscount = totalDiscount;
   }
 
   getEventResult() {
