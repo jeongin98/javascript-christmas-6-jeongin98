@@ -50,7 +50,7 @@ class Event {
   startDiscount() {
     this.setMenuInOrderList();
     this.setOriginalTotalCost();
-    // 크리스마스 디데이 할인
+    this.christmasDiscount();
     this.weekdaysDiscount();
     this.weekendsDiscount();
     this.specialDiscount();
@@ -77,6 +77,12 @@ class Event {
       const menuPrice = Menu[category][menuName].price;
       this.#eventResult.originalTotalCost += menuPrice * orderQuantity;
     });
+  }
+
+  christmasDiscount() {
+    if (this.#date >= 1 && this.#date <= 25) {
+      this.#eventResult.discounts.christmas += -(1000 + (this.#date - 1) * 100);
+    }
   }
 
   specialDiscount() {
