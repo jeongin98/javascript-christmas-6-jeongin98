@@ -82,7 +82,7 @@ class Event {
   }
 
   specialDiscount() {
-    if (this.date % 7 === 3 || this.date === 25) {
+    if (this.#date % 7 === 3 || this.#date === 25) {
       this.#eventResult.discounts.special += -1000;
     }
   }
