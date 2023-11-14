@@ -50,10 +50,9 @@ class Event {
   startDiscount() {
     this.setMenuInOrderList();
     this.setOriginalTotalCost();
-    // 크리스마스 디데이 할인(리턴 형식)
-    // 평일 할인
+    // 크리스마스 디데이 할인
+    this.weekdaysDiscount();
     // 주말 할인
-    // 특별 할인
     this.specialDiscount();
   }
 
@@ -84,6 +83,20 @@ class Event {
   specialDiscount() {
     if (this.#date % 7 === 3 || this.#date === 25) {
       this.#eventResult.discounts.special += -1000;
+    }
+  }
+
+  weekdaysDiscount() {
+    let dessertItemCount = 0;
+    this.#orderList.forEach((order) => {
+      if (order.category === 'Dessert') {
+        dessertItemCount += order.orderQuantity;
+      }
+    });
+
+    const remainder = this.#date % 7;
+    if ((remainder === 0 || remainder === 3 || remainder === 4 || remainder === 5 || remainder === 6) && this.#date !== 25) {
+      this.#eventResult.discounts.weekdays += dessertItemCount * -2023;
     }
   }
 
