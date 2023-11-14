@@ -181,4 +181,25 @@ describe('Event 클래스 함수 테스트', () => {
     // then
     expect(isFreeGiftReceived).toStrictEqual(true);
   });
+
+  test('총혜택 금액 계산이 잘 되는지 확인한다', async () => {
+    // given
+    const date = 3;
+    const orderList = [
+      { category: 'Main', menuName: '티본스테이크', orderQuantity: 1 },
+      { category: 'Main', menuName: '바비큐립', orderQuantity: 1 },
+      { category: 'Dessert', menuName: '초코케이크', orderQuantity: 2 },
+      { category: 'Drink', menuName: '제로콜라', orderQuantity: 1 },
+    ];
+    const event = new Event(date, orderList);
+
+    // when
+    event.startDiscountAndEvent();
+    event.setTotalDiscountCost();
+    const discountCost = event.getEventResult().totalDiscount;
+    const result = -31246;
+
+    // then
+    expect(discountCost).toStrictEqual(result);
+  });
 });
