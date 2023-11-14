@@ -7,7 +7,10 @@ class EventService {
     this.#event = new Event(date, orderList);
   }
 
-  start() {}
+  start() {
+    const eventResult = this.#event.startDiscountAndEvent();
+    return eventResult;
+  }
 }
 
 export default EventService;
