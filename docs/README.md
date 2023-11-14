@@ -110,6 +110,10 @@
 
 # 테스트코드
 
+### EventTest
+
+- [x] 할인 미진행 함수 테스트
+
 ### ValidationTest
 
 > Validation과 관련된 테스트 진행

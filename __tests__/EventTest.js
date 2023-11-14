@@ -28,6 +28,7 @@ describe('Event 테스트', () => {
 
     const event = new Event(date, orderList);
     const result = { 타파스: 1, 제로콜라: 1 };
+
     const eventResultOrderList = event.getEventResult().orderList;
 
     // when
@@ -37,7 +38,7 @@ describe('Event 테스트', () => {
     expect(eventResultOrderList).toStrictEqual(result);
   });
 
-  test('setOriginalTotalCost 총주문 금액 계산 함수', async () => {
+  test('총주문 금액 계산이 잘 되었는지 확인한다', async () => {
     // given
     const date = 3;
     const orderList = [
@@ -54,5 +55,32 @@ describe('Event 테스트', () => {
 
     // then
     expect(totalCost).toStrictEqual(result);
+  });
+
+  test('할인 미진행시 결과 객체에 값들이 잘 저장되었는지 확인한다', async () => {
+    // given
+    const date = 3;
+    const orderList = [
+      { category: 'Appetizers', menuName: '타파스', orderQuantity: 1 },
+      { category: 'Drinks', menuName: '제로콜라', orderQuantity: 1 },
+    ];
+
+    const event = new Event(date, orderList);
+    const eventResult = {
+      orderList: { 타파스: 1, 제로콜라: 1 },
+      originalTotalCost: 8500,
+      freeGift: false,
+      discounts: null,
+      totalDiscount: 0,
+      costAfterDiscount: 8500,
+      eventBadge: null,
+    };
+
+    // when
+    event.notDiscount(); // 왜 null이 나올까
+    // const dd = event.getEventResult();
+
+    // then
+    expect(event.getEventResult()).toEqual(eventResult);
   });
 });

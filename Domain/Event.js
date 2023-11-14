@@ -64,7 +64,7 @@ class Event {
     this.#eventResult.discounts = null;
     this.#eventResult.totalDiscount = 0;
     this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost;
-    this.#eventResult.orderList = null;
+    this.#eventResult.eventBadge = null;
   }
 
   setMenuInOrderList() {
