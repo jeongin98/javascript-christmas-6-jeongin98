@@ -57,6 +57,7 @@ class Event {
     this.specialDiscount();
     this.freeGiftDiscount();
     this.setTotalDiscountCost();
+    this.setCostAfterDiscount();
   }
 
   notDiscount() {
@@ -138,6 +139,10 @@ class Event {
     const { discounts } = this.#eventResult;
     const totalDiscount = Object.values(discounts).reduce((total, discount) => total + discount, 0);
     this.#eventResult.totalDiscount = totalDiscount;
+  }
+
+  setCostAfterDiscount() {
+    this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost + this.#eventResult.totalDiscount;
   }
 
   badgeEvent() {
