@@ -142,7 +142,7 @@ class Event {
   }
 
   setCostAfterDiscount() {
-    this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost + this.#eventResult.totalDiscount;
+    this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost + this.#eventResult.totalDiscount + CONSTANTS.freeGiftCost;
   }
 
   badgeEvent() {
