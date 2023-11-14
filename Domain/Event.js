@@ -11,16 +11,24 @@ class Event {
   constructor(date, orderList) {
     this.#date = date;
     this.#orderList = orderList;
-    this.#eventResult = [];
+    this.#eventResult = {
+      orderList: {},
+      originalTotalCost: 0,
+      freeGift: false,
+      discounts: { christmas: 0, weekdays: 0, weekends: 0, special: 0, gift: 0 },
+      totalDiscount: 0,
+      costAfterDiscount: 0,
+      eventBadge: null,
+    };
   }
 
   startDiscountAndEvent() {
     // 할인 여부
     const isDiscountable = this.isDiscountOrder();
     // 할인
-    // startDiscount();
+    this.startDiscount();
     // 이벤트
-    // startEvent();
+    // this.startEvent();
 
     return this.#eventResult;
   }
@@ -32,11 +40,14 @@ class Event {
       return total + menuPrice * orderQuantity;
     }, 0);
 
+    let isDiscountable = false;
     if (totalOrderCost >= 10000) {
-      const isDiscountable = true;
+      isDiscountable = true;
     }
     return isDiscountable;
   }
+
+  startDiscount() {}
 }
 
 export default Event;
