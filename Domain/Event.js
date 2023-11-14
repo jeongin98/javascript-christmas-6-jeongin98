@@ -28,7 +28,8 @@ class Event {
     // 할인
     isDiscountable ? this.startDiscount() : this.notDiscount();
     // 이벤트
-    this.startFreeGiftEvent();
+    this.freeGiftEvent();
+    this.badgeEvent();
 
     return this.#eventResult;
   }
@@ -127,14 +128,24 @@ class Event {
     if (this.#eventResult.freeGift) this.#eventResult.totalDiscount -= 25000;
   }
 
-  startFreeGiftEvent() {
+  freeGiftEvent() {
     if (this.#eventResult.originalTotalCost >= 120000) {
       this.#eventResult.freeGift = true;
     }
   }
 
+  badgeEvent() {
+    // 이벤트 배지가 부여되지 않는 경우, "없음"으로 보여 주세요.
+  }
+
   getEventResult() {
-    return this.#eventResult;
+    const { totalDiscount } = this.#eventResult;
+
+    if (totalDiscount >= 20000) this.#eventResult.eventBadge = '산타';
+    if (totalDiscount >= 10000) this.#eventResult.eventBadge = '트리';
+    if (totalDiscount >= 5000) this.#eventResult.eventBadge = '별';
+
+    this.#eventResult.eventBadge = '없음';
   }
 }
 

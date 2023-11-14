@@ -175,7 +175,7 @@ describe('Event 클래스 함수 테스트', () => {
 
     // when
     event.startDiscount();
-    event.startFreeGiftEvent();
+    event.freeGiftEvent();
     const isFreeGiftReceived = event.getEventResult().freeGift;
 
     // then
