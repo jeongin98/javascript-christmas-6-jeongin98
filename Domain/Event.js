@@ -77,7 +77,6 @@ class Event {
     this.#orderList.forEach(({ category, menuName, orderQuantity }) => {
       const menuPrice = Menu[category][menuName].price;
       this.#eventResult.originalTotalCost += menuPrice * orderQuantity;
-      this.#eventResult.orderList[menuName] = orderQuantity;
     });
   }
 
