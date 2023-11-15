@@ -39,23 +39,23 @@ describe('Validation 테스트', () => {
   });
 
   test.each([
-    [[{ category: 'Mains', menuName: '해산물파스타', orderQuantity: -1 }]],
+    [[{ category: 'Main', menuName: '해산물파스타', orderQuantity: -1 }]],
     [
       [
-        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 2 },
-        { category: 'Drinks', menuName: '레드와인', orderQuantity: -1 },
+        { category: 'Main', menuName: '해산물파스타', orderQuantity: 2 },
+        { category: 'Drink', menuName: '레드와인', orderQuantity: -1 },
       ],
     ],
     [
       [
-        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 'd' },
-        { category: 'Drinks', menuName: '레드와인', orderQuantity: 1 },
+        { category: 'Main', menuName: '해산물파스타', orderQuantity: 'd' },
+        { category: 'Drink', menuName: '레드와인', orderQuantity: 1 },
       ],
     ],
     [
       [
-        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 3.4 },
-        { category: 'Drinks', menuName: '레드와인', orderQuantity: 1 },
+        { category: 'Main', menuName: '해산물파스타', orderQuantity: 3.4 },
+        { category: 'Drink', menuName: '레드와인', orderQuantity: 1 },
       ],
     ],
   ])('checkOrderQuantity() - 메뉴의 개수가 1 이상의 숫자가 아닐 경우 에러 발생시키는지 확인', (inputs) => {
@@ -64,16 +64,30 @@ describe('Validation 테스트', () => {
     expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
   });
   test.each([
-    [[{ category: 'Mains', menuName: '해산물파스타', orderQuantity: 21 }]],
+    [[{ category: 'Main', menuName: '해산물파스타', orderQuantity: 21 }]],
     [
       [
-        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 13 },
-        { category: 'Drinks', menuName: '레드와인', orderQuantity: 8 },
+        { category: 'Main', menuName: '해산물파스타', orderQuantity: 13 },
+        { category: 'Drink', menuName: '레드와인', orderQuantity: 8 },
       ],
     ],
   ])('checkOrderTotalQuantity() - 주문 개수 제한(주문 한 번에 최대 20개)을 넘어갈 경우 에러 발생시키는지 확인', (inputs) => {
     const result = () => Validation.checkOrderTotalQuantity(inputs);
 
     expect(result).toThrowError(ERROR_MESSAGE.invalidQuantityOrder);
+  });
+
+  test.each([
+    [[{ category: 'Drink', menuName: '레드와인', orderQuantity: 7 }]],
+    [
+      [
+        { category: 'Drink', menuName: '제로콜라', orderQuantity: 3 },
+        { category: 'Drink', menuName: '샴페인', orderQuantity: 8 },
+      ],
+    ],
+  ])('checkNoDrinkOnlyOrder() - 음료주문만 있을 경우 에러 발생시키는지 확인', (inputs) => {
+    const result = () => Validation.checkNoDrinkOnlyOrder(inputs);
+
+    expect(result).toThrowError(ERROR_MESSAGE.invalidOnlyDrinkOrder);
   });
 });
