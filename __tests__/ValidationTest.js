@@ -90,4 +90,10 @@ describe('Validation 테스트', () => {
 
     expect(result).toThrowError(ERROR_MESSAGE.invalidOnlyDrinkOrder);
   });
+
+  test.each(['콜라제로', '초코아이스크림', '바비큐', '파스타크리스마스', '쌈폐인'])('findCategory() - 고객이 메뉴판에 없는 메뉴를 입력하는 경우 에러 발생시키는지 확인', (inputs) => {
+    const result = () => Validation.findCategory(inputs);
+
+    expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
+  });
 });
