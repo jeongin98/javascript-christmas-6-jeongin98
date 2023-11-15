@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { ERROR_MESSAGE } from './messages.js';
 import Menu from '../Domain/menu.js';
+import CONSTANTS from './constants.js';
 
 const Validation = {
   checkDate(userDateNumber) {
@@ -49,6 +50,7 @@ const Validation = {
 
     const refinedOrderList = this.changeIntoOrderInfo(userOrderString);
     this.checkOrderQuantity(refinedOrderList);
+    this.checkOrderTotalQuantity(refinedOrderList);
 
     return refinedOrderList;
   },
@@ -81,6 +83,14 @@ const Validation = {
 
     if (!isAllQuantityValid) {
       throw new Error(ERROR_MESSAGE.invalidOrder);
+    }
+  },
+
+  checkOrderTotalQuantity(refinedOrderList) {
+    const totalQuantity = refinedOrderList.reduce((sum, order) => sum + order.orderQuantity, 0);
+
+    if (totalQuantity > CONSTANTS.thresholdOrderTotalQuantity) {
+      throw new Error(ERROR_MESSAGE.invalidQuantityOrder);
     }
   },
 };
