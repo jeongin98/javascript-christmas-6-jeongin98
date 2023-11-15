@@ -45,9 +45,10 @@ const Validation = {
 
   checkOrder(userOrderString) {
     this.checkOrderStyle(userOrderString);
+    this.checkDuplicateMenus(userOrderString);
     const refinedOrderList = this.changeIntoOrderInfo(userOrderString);
     this.checkOrderQuantity(refinedOrderList);
-    // 코드
+
     return refinedOrderList;
   },
 
@@ -65,6 +66,21 @@ const Validation = {
     if (!regex.test(userOrderInput)) {
       throw new Error('주문 입력 형식이 올바르지 않습니다. 정확한 형식으로 다시 입력해주세요.');
     }
+  },
+
+  checkDuplicateMenus(userOrderInput) {
+    const orders = userOrderInput.split(',').map((order) => order.trim());
+    const uniqueMenus = new Set();
+
+    orders.forEach((userOrder) => {
+      const [menu] = userOrder.split('-');
+
+      if (uniqueMenus.has(menu)) {
+        throw new Error('중복된 메뉴가 있습니다. 각 메뉴는 한 번만 주문 가능합니다.');
+      }
+
+      uniqueMenus.add(menu);
+    });
   },
 };
 
