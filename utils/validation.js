@@ -8,7 +8,7 @@ const Validation = {
   },
 
   checkDateInEventPeriod(userDateNumber) {
-    if (userDateNumber < 1 || userDateNumber > 31 || isNaN(userDateNumber)) {
+    if (!Number.isInteger(userDateNumber) || userDateNumber < 1 || userDateNumber > 31 || isNaN(userDateNumber)) {
       throw new Error(ERROR_MESSAGE.invalidDate);
     }
   },
@@ -46,18 +46,11 @@ const Validation = {
   checkOrder(userOrderString) {
     this.checkOrderStyle(userOrderString);
     this.checkDuplicateMenus(userOrderString);
+
     const refinedOrderList = this.changeIntoOrderInfo(userOrderString);
     this.checkOrderQuantity(refinedOrderList);
 
     return refinedOrderList;
-  },
-
-  checkOrderQuantity(refinedOrderList) {
-    const isAllQuantityValid = refinedOrderList.every((order) => order.orderQuantity >= 1);
-
-    if (!isAllQuantityValid) {
-      throw new Error(ERROR_MESSAGE.invalidOrder);
-    }
   },
 
   checkOrderStyle(userOrderInput) {
@@ -81,6 +74,14 @@ const Validation = {
 
       uniqueMenus.add(menu);
     });
+  },
+
+  checkOrderQuantity(refinedOrderList) {
+    const isAllQuantityValid = refinedOrderList.every((order) => order.orderQuantity >= 1);
+
+    if (!isAllQuantityValid) {
+      throw new Error(ERROR_MESSAGE.invalidOrder);
+    }
   },
 };
 
