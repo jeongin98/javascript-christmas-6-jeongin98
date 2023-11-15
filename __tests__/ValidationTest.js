@@ -1,4 +1,5 @@
 import Validation from '../utils/validation.js';
+import { ERROR_MESSAGE } from '../utils/messages.js';
 
 describe('Validation 테스트', () => {
   test('입력받은 주문 정보를 정제한 뒤 반환', async () => {
@@ -14,5 +15,11 @@ describe('Validation 테스트', () => {
 
     // then
     expect(result).toEqual(passResult);
+  });
+
+  test.each([' ', '32', '-1', '23.5', 'three', '삼'])('checkDateInEventPeriod() - 날짜 입력 유효성 검사 - 1과 31일 사이 날짜 외 입력 시 에러 발생 시키는지 확인', (inputs) => {
+    const result = () => Validation.checkDateInEventPeriod(inputs);
+
+    expect(result).toThrowError(ERROR_MESSAGE.invalidDate);
   });
 });
