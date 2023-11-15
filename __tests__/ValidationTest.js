@@ -22,4 +22,13 @@ describe('Validation 테스트', () => {
 
     expect(result).toThrowError(ERROR_MESSAGE.invalidDate);
   });
+
+  test.each([[['해산물파스타-2', '초코케이크1']], [['해산물파스타3개', '초코케이크-1']], [['해산물파스타 - 2', '초코케이크-1']], [['해산물파스타 -2', '초코케이크-1', '코카콜라-3']], [['해산물파스타- 2', '초코케이크-1', '코카콜라-3']]])(
+    'checkOrderStyle() - 주문 입력 유효성 검사 - 주문 형식이 예시와 다른 경우 에러 발생 시키는지 확인',
+    (inputs) => {
+      const result = () => Validation.checkOrderStyle(inputs);
+
+      expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
+    },
+  );
 });
