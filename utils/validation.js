@@ -45,9 +45,17 @@ const Validation = {
 
   checkOrder(userOrderString) {
     const refinedOrderList = this.changeIntoOrderInfo(userOrderString);
-    // 예외 코드
+    this.checkOrderQuantity(refinedOrderList);
     // 코드
     return refinedOrderList;
+  },
+
+  checkOrderQuantity(refinedOrderList) {
+    const isAllQuantityValid = refinedOrderList.every((order) => order.orderQuantity >= 1);
+
+    if (!isAllQuantityValid) {
+      throw new Error('개수가 이상해요');
+    }
   },
 };
 
