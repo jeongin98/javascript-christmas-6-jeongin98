@@ -31,4 +31,10 @@ describe('Validation 테스트', () => {
       expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
     },
   );
+
+  test.each([['레드와인-1,레드와인-1'], ['레드와인-1,레드와인-5'], ['레드와인-1,타파스-3,레드와인-5']])('checkDuplicateMenus() - 메뉴 중복 입력 시 에러 발생시키는지 확인', (inputs) => {
+    const result = () => Validation.checkDuplicateMenus(inputs);
+
+    expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
+  });
 });
