@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 
 const OutputView = {
   printMenu(orderList) {
-    Console.print('<주문 메뉴>');
+    Console.print('\n<주문 메뉴>');
     let resultString = '';
 
     for (const [menuName, orderQuantity] of Object.entries(orderList)) {
@@ -15,18 +15,18 @@ const OutputView = {
   },
 
   printoriginalTotalCost(originalTotalCost) {
-    Console.print('<할인 전 총주문 금액>');
+    Console.print('\n<할인 전 총주문 금액>');
     const formattedCost = originalTotalCost.toLocaleString();
     Console.print(`${formattedCost}원`);
   },
 
   printRecivedFreeGift(freeGift) {
-    Console.print('<증정 메뉴>');
+    Console.print('\n<증정 메뉴>');
     freeGift ? Console.print('샴페인 1개') : Console.print('없음');
   },
 
   printDiscounts(discounts) {
-    Console.print('<혜택 내역>');
+    Console.print('\n<혜택 내역>');
     if (discounts === null) {
       Console.print('없음');
       return;
@@ -46,19 +46,19 @@ const OutputView = {
   },
 
   printTotalDiscount(totalDiscount) {
-    Console.print('<총혜택 금액>');
+    Console.print('\n<총혜택 금액>');
     const formattedCost = totalDiscount.toLocaleString();
     Console.print(`${formattedCost}원`);
   },
 
   printCostAfterDiscount(costAfterDiscount) {
-    Console.print('<할인 후 예상 결제 금액>');
+    Console.print('\n<할인 후 예상 결제 금액>');
     const formattedCost = costAfterDiscount.toLocaleString();
     Console.print(`${formattedCost}원`);
   },
 
   printEventBadge(eventBadge) {
-    Console.print('<12월 이벤트 배지>');
+    Console.print('\n<12월 이벤트 배지>');
     Console.print(eventBadge);
   },
 };

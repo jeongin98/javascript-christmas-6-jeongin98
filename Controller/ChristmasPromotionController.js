@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import EventService from '../Domain/EventService.js';
 
 class ChristmasPromotionController {

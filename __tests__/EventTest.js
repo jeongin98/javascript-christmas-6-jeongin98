@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import Event from '../Domain/Event.js';
 
 describe('Event 클래스 함수 테스트', () => {

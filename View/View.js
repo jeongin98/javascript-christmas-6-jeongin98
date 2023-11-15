@@ -1,5 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
-
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
 
@@ -33,16 +31,5 @@ class View {
     this.#outputView.printEventBadge(eventResult.eventBadge);
   }
 }
-/*
- this.#eventResult = {
-      orderList: {},
-      originalTotalCost: 0,
-      freeGift: false,
-      discounts: { christmas: 0, weekdays: 0, weekends: 0, special: 0, gift: 0 },
-      totalDiscount: 0,
-      costAfterDiscount: 0,
-      eventBadge: '',
-    };
- */
 
 export default View;
