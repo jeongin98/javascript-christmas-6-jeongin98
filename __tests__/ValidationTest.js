@@ -63,4 +63,17 @@ describe('Validation 테스트', () => {
 
     expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
   });
+  test.each([
+    [[{ category: 'Mains', menuName: '해산물파스타', orderQuantity: 21 }]],
+    [
+      [
+        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 13 },
+        { category: 'Drinks', menuName: '레드와인', orderQuantity: 8 },
+      ],
+    ],
+  ])('checkOrderTotalQuantity() - 주문 개수 제한(주문 한 번에 최대 20개)을 넘어갈 경우 에러 발생시키는지 확인', (inputs) => {
+    const result = () => Validation.checkOrderTotalQuantity(inputs);
+
+    expect(result).toThrowError(ERROR_MESSAGE.invalidQuantityOrder);
+  });
 });
