@@ -5,6 +5,15 @@ export const INPUT_MESSAGE = Object.freeze({
 
 export const OUTPUT_MESSAGE = Object.freeze({
   showEvent: (date) => `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
+  orderMenu: '\n<주문 메뉴>',
+  costBeforeDiscount: '\n<할인 전 총주문 금액>',
+  freeGift: '\n<증정 메뉴>',
+  oneChampagne: '샴페인 1개',
+  nothing: '없음',
+  discountList: '\n<혜택 내역>',
+  totalDiscount: '\n<총혜택 금액>',
+  costAfterDiscount: '\n<할인 후 예상 결제 금액>',
+  eventBadge: '\n<12월 이벤트 배지>',
 });
 
 const ERROR_TYPE = '[ERROR]';
