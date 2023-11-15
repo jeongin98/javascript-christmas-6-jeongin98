@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import Menu from './menu.js';
 import CONSTANTS from '../utils/constants.js';
 
@@ -101,9 +102,8 @@ class Event {
         dessertItemCount += order.orderQuantity;
       }
     });
-
     const remainder = this.#date % 7;
-    if ((remainder === 0 || remainder === 3 || remainder === 4 || remainder === 5 || remainder === 6) && this.#date !== 25) {
+    if (remainder === 0 || remainder === 3 || remainder === 4 || remainder === 5 || remainder === 6) {
       this.#eventResult.discounts.weekdays += dessertItemCount * -CONSTANTS.year;
     }
   }
@@ -141,7 +141,10 @@ class Event {
   }
 
   setCostAfterDiscount() {
-    this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost + this.#eventResult.totalDiscount + CONSTANTS.freeGiftCost;
+    this.#eventResult.costAfterDiscount = this.#eventResult.originalTotalCost + this.#eventResult.totalDiscount;
+    if (this.#eventResult.originalTotalCost >= CONSTANTS.thresholdFreeGiftCost) {
+      this.#eventResult.costAfterDiscount += CONSTANTS.freeGiftCost;
+    }
   }
 
   badgeEvent() {
