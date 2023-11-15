@@ -44,6 +44,7 @@ const Validation = {
   },
 
   checkOrder(userOrderString) {
+    this.checkOrderStyle(userOrderString);
     const refinedOrderList = this.changeIntoOrderInfo(userOrderString);
     this.checkOrderQuantity(refinedOrderList);
     // 코드
@@ -55,6 +56,14 @@ const Validation = {
 
     if (!isAllQuantityValid) {
       throw new Error('개수가 이상해요');
+    }
+  },
+
+  checkOrderStyle(userOrderInput) {
+    const regex = /^[가-힣a-zA-Z0-9]+-\d+(,[가-힣a-zA-Z0-9]+-\d+)*$/;
+
+    if (!regex.test(userOrderInput)) {
+      throw new Error('주문 입력 형식이 올바르지 않습니다. 정확한 형식으로 다시 입력해주세요.');
     }
   },
 };
