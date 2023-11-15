@@ -37,4 +37,30 @@ describe('Validation 테스트', () => {
 
     expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
   });
+
+  test.each([
+    [[{ category: 'Mains', menuName: '해산물파스타', orderQuantity: -1 }]],
+    [
+      [
+        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 2 },
+        { category: 'Drinks', menuName: '레드와인', orderQuantity: -1 },
+      ],
+    ],
+    [
+      [
+        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 'd' },
+        { category: 'Drinks', menuName: '레드와인', orderQuantity: 1 },
+      ],
+    ],
+    [
+      [
+        { category: 'Mains', menuName: '해산물파스타', orderQuantity: 3.4 },
+        { category: 'Drinks', menuName: '레드와인', orderQuantity: 1 },
+      ],
+    ],
+  ])('checkOrderQuantity() - 메뉴의 개수가 1 이상의 숫자가 아닐 경우 에러 발생시키는지 확인', (inputs) => {
+    const result = () => Validation.checkOrderQuantity(inputs);
+
+    expect(result).toThrowError(ERROR_MESSAGE.invalidOrder);
+  });
 });

@@ -80,7 +80,10 @@ const Validation = {
   },
 
   checkOrderQuantity(refinedOrderList) {
-    const isAllQuantityValid = refinedOrderList.every((order) => order.orderQuantity >= 1);
+    const isAllQuantityValid = refinedOrderList.every((order) => {
+      const isInteger = Number.isInteger(order.orderQuantity);
+      return isInteger && order.orderQuantity >= 1;
+    });
 
     if (!isAllQuantityValid) {
       throw new Error(ERROR_MESSAGE.invalidOrder);
