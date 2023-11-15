@@ -56,7 +56,7 @@ const Validation = {
     const isAllQuantityValid = refinedOrderList.every((order) => order.orderQuantity >= 1);
 
     if (!isAllQuantityValid) {
-      throw new Error('개수가 이상해요');
+      throw new Error(ERROR_MESSAGE.invalidOrder);
     }
   },
 
@@ -64,7 +64,7 @@ const Validation = {
     const regex = /^[가-힣a-zA-Z0-9]+-\d+(,[가-힣a-zA-Z0-9]+-\d+)*$/;
 
     if (!regex.test(userOrderInput)) {
-      throw new Error('주문 입력 형식이 올바르지 않습니다. 정확한 형식으로 다시 입력해주세요.');
+      throw new Error(ERROR_MESSAGE.invalidOrder);
     }
   },
 
@@ -76,7 +76,7 @@ const Validation = {
       const [menu] = userOrder.split('-');
 
       if (uniqueMenus.has(menu)) {
-        throw new Error('중복된 메뉴가 있습니다. 각 메뉴는 한 번만 주문 가능합니다.');
+        throw new Error(ERROR_MESSAGE.invalidOrder);
       }
 
       uniqueMenus.add(menu);
