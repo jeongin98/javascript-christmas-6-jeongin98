@@ -51,6 +51,7 @@ const Validation = {
     const refinedOrderList = this.changeIntoOrderInfo(userOrderString);
     this.checkOrderQuantity(refinedOrderList);
     this.checkOrderTotalQuantity(refinedOrderList);
+    this.checkNoDrinkOnlyOrder(refinedOrderList);
 
     return refinedOrderList;
   },
@@ -91,6 +92,14 @@ const Validation = {
 
     if (totalQuantity > CONSTANTS.thresholdOrderTotalQuantity) {
       throw new Error(ERROR_MESSAGE.invalidQuantityOrder);
+    }
+  },
+
+  checkNoDrinkOnlyOrder(refinedOrderList) {
+    const hasDrink = refinedOrderList.every((order) => order.category === 'Drink');
+
+    if (hasDrink && refinedOrderList.length > 0) {
+      throw new Error(ERROR_MESSAGE.invalidOnlyDrinkOrder);
     }
   },
 };
